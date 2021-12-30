@@ -20,7 +20,7 @@ export default function BottlesList(props) {
         {name: "Nom", field: "name", sortable:true},
         // {name: "Categorie", field: "category", sortable:true},
         {name: "Type", field: "type", sortable:true},
-        {name: "Pays/Région", field: "country", sortable:true},
+        // {name: "Pays/Région", field: "country", sortable:true},
         {name: "Millésime", field: "vintage", sortable:true},
         // {name: "€", field: "price", sortable:true}
         ])
@@ -167,7 +167,7 @@ useEffect(() => {
                                 <td>{bottle.name}</td>
                                 {/* <td>{bottle.category}</td> */}
                                 <td>{bottle.type}</td>
-                                <td>{bottle.country}</td>
+                                {/* <td>{bottle.country}</td> */}
                                 <td>{bottle.vintage}</td>
   
                                 {user ? (user.is_admin ? <td className='row'>
