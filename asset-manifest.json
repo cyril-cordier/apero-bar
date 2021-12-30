@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/apero-bar/static/css/main.5bc88a1e.chunk.css",
-    "main.js": "/apero-bar/static/js/main.3a7df1ad.chunk.js",
-    "main.js.map": "/apero-bar/static/js/main.3a7df1ad.chunk.js.map",
+    "main.js": "/apero-bar/static/js/main.a30664b9.chunk.js",
+    "main.js.map": "/apero-bar/static/js/main.a30664b9.chunk.js.map",
     "runtime-main.js": "/apero-bar/static/js/runtime-main.9af675fc.js",
     "runtime-main.js.map": "/apero-bar/static/js/runtime-main.9af675fc.js.map",
     "static/js/2.2e49ee56.chunk.js": "/apero-bar/static/js/2.2e49ee56.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.9af675fc.js",
     "static/js/2.2e49ee56.chunk.js",
     "static/css/main.5bc88a1e.chunk.css",
-    "static/js/main.3a7df1ad.chunk.js"
+    "static/js/main.a30664b9.chunk.js"
   ]
 }
