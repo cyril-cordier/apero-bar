@@ -6,6 +6,7 @@ import Search from './DataTable/Search'
 import Pagination from './DataTable/Pagination'
 import useFullPageLoader from './hooks/useFullPageLoader'
 import { useHistory } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
 
 
 export default function BottlesList(props) {
@@ -25,7 +26,7 @@ export default function BottlesList(props) {
         ])
     let history = useHistory();
     const ITEMS_PER_PAGE = 50;
-
+  
 
     
     useEffect(() => {
@@ -40,6 +41,7 @@ useEffect(() => {
     const fetchData = async () => {
         showLoader();
         try {
+
             const fetchBottle = await BottleFinder.get("/bouteilles",{headers : {
                 Authorization: `Bearer ${localStorage.getItem('bottletoken')}}`
             }
