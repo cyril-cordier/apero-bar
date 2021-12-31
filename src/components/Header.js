@@ -2,11 +2,12 @@ import React, {useEffect, useContext} from 'react';
 import {BottleContext} from '../context/BottleContext'
 import { Link } from 'react-router-dom'
 import jwtDecode from 'jwt-decode';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 const Header = () => {
     const {message, setMessage, user, setUser, setToken} = useContext(BottleContext);
-
+    let history = useHistory()
     useEffect(() => {
         setTimeout(() => {
             setMessage('')
@@ -27,6 +28,7 @@ const Header = () => {
     const handleLogOut = () => {
         setUser(null)
         localStorage.removeItem('bottletoken');
+        window.location.reload()
         
     }
 

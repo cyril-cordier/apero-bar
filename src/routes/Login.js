@@ -27,7 +27,6 @@ const Login = () => {
             })
             setError('');
             setErrCode('');
-            console.log(result)
             if(result.data.access_token){
                 localStorage.setItem('bottletoken',result.data.access_token);
                 setToken(result.data.access_token)

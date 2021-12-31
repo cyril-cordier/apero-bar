@@ -10,7 +10,7 @@ export default function UpdatePage(props) {
         const {id} = useParams();
         let history = useHistory();
         const [name, setName] = useState("")
-        const [ingredients, setIngredients] = useState("")
+        const [image, setImage] = useState("")
         const [special, setSpecial] = useState("")
         const [price, setPrice] = useState("")
         const [base, setBase] = useState("")
@@ -20,14 +20,17 @@ export default function UpdatePage(props) {
 
     useEffect(() => {
         const fetchData = async() => {
-            const response = await BottleFinder.get(`/bottles/${id}`)
+            const response = await BottleFinder.get(`/bouteilles/${id}`,
+            {headers : {
+                Authorization: `Bearer ${localStorage.getItem('bottletoken')}`
+            }});
             console.log(response.data.Bottle)
-            setName(response.data.Bottle.name)
-            setIngredients(response.data.Bottle.ingredients)
-            setPrice(response.data.Bottle.price)
-            setBase(response.data.Bottle.base)
-            setStatus(response.data.Bottle.status)
-            setSpecial(response.data.Bottle.special)
+            setName(response.data.name)
+            setImage(response.data.image)
+            // setPrice(response.data.Bottle.price)
+            // setBase(response.data.Bottle.base)
+            // setStatus(response.data.Bottle.status)
+            // setSpecial(response.data.Bottle.special)
             
 
         }
@@ -37,20 +40,25 @@ export default function UpdatePage(props) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = JSON.stringify(
-                [
-                {"propName":"name","value":name},
-                {"propName":"price","value":price},
-                {"propName":"base","value":base},
-                {"propName":"special","value":special},
-                {"propName":"status","value":status},
-                {"propName":"ingredients","value":ingredients}
-                ])
+        const data = {
+            "categoryId": 1,
+            "typeId": 1,
+            "name": "nouveau",
+            "vintage": 0,
+            "details": "string",
+            "image": "string",
+            "countryId": 1,
+            "volume": "string",
+            "alcohol": 0,
+            "quantity": 1,
+            "display": true,
+            "toBuy": true
+          }
         try {
-            await BottleFinder(`/bottles/${id}`, {
-            method: 'patch',
+            await BottleFinder(`/bouteilles`, {
+            method: 'post',
             headers : {
-                'Authorization': `Bearer ${token}`, 
+                'Authorization': `Bearer ${localStorage.getItem('bottletoken')}`,
                 'Content-Type': 'application/json'
             },
             data : data
@@ -66,17 +74,17 @@ export default function UpdatePage(props) {
         
     return (
         <div>
-            <h1 className="text-center">Update Bottle</h1>
-            <p className="text-center">secret page</p>
+            <h1 className="text-center">{name}</h1>
+            <p className="text-center">Mise à jour</p>
             
             <form action="submit">
                 <div className="form-group">
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name">Nom</label>
                     <input value={name} onChange={e => setName(e.target.value)} id="name" type="text" className="form-control"/>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="ingredients">Ingrédients</label>
-                    <input value={ingredients} onChange={e => setIngredients(e.target.value)} id="ingredients" type="text" className="form-control"/>
+                    <label htmlFor="imge">Image</label>
+                    <input value={image} onChange={e => setImage(e.target.value)} id="image" type="text" className="form-control"/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="price">Prix</label>
@@ -95,7 +103,7 @@ export default function UpdatePage(props) {
                     <input value={special} onChange={e => setSpecial(e.target.value)} id="special" type="text" className="form-control"/>
                 </div>
                 <button type="submit" onClick={handleSubmit} className="btn btn-primary">Submit</button>
-                <button onClick={() => history.push("/")} className=" btn btn-primary mx-5">Cancel</button>
+                <button onClick={() => history.push(`/bottles/${id}`)} className=" btn btn-primary mx-5">Cancel</button>
             </form>
         </div>
     )

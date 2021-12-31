@@ -25,8 +25,8 @@ function App() {
             {/* <ProtectedRoute exact path='/addbottle' component={AddBottle}/> */}
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
-            {/* <Route exact path='/bottles/:id' component={BottleDetailPage}/>
-            <Route exact path='/bottles/:id/update' component={UpdatePage}/> */}
+            <Route exact path='/bottles/:id' component={BottleDetailPage}/>
+            <Route exact path='/bottles/:id/update' component={UpdatePage}/>
             <Route component={Home}/>
           </Switch>
         </Router>

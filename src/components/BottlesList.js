@@ -31,7 +31,7 @@ export default function BottlesList(props) {
     
     useEffect(() => {
     
-    if(user && user.is_admin === true) {
+    if(user && user.role == 'admin') {
         setHeaders([...headers, {name: "actions", field: "actions"}])
     }
     // eslint-disable-next-line
@@ -43,7 +43,7 @@ useEffect(() => {
         try {
 
             const fetchBottle = await BottleFinder.get("/bouteilles",{headers : {
-                Authorization: `Bearer ${localStorage.getItem('bottletoken')}}`
+                Authorization: `Bearer ${localStorage.getItem('bottletoken')}`
             }
         })
             console.log("🚀 ~ file: BottlesList.js ~ line 42 ~ fetchData ~ fetchBottle", fetchBottle)
@@ -63,30 +63,7 @@ useEffect(() => {
     }, [setBottles])
 
 
-    const handleDelete =  async (e, id) => {
-
-    console.log(id)
-        e.stopPropagation();
-        try {
-            const response = await BottleFinder.delete(`/bouteilles/${id}`, 
-            {headers : {
-                Authorization: `Bearer ${token}`
-            }});
-            setBottles(bottles.filter(bottle => {
-                return bottle.id !== id
-            }))
-
-            
-            console.log(response);
-        } catch (err) {
-            console.log(err)
-        }
-    }
-
-    const handleUpdate = (e, id) => {
-        e.stopPropagation();
-        history.push(`/bottles/${id}/update`)
-    }
+    
 
 
     const handleBottleSelect = (id) => {
@@ -162,19 +139,14 @@ useEffect(() => {
                     
                         {bottleData && bottleData.map(bottle => {
                             return (
-                            <tr onClick={() => handleBottleSelect(bottle._id)} key={bottle.id}>
+                            <tr onClick={() => handleBottleSelect(bottle.id)} key={bottle.id}>
                             
                                 <td>{bottle.name}</td>
                                 {/* <td>{bottle.category}</td> */}
                                 <td>{bottle.type}</td>
                                 {/* <td>{bottle.country}</td> */}
                                 <td>{bottle.vintage}</td>
-  
-                                {user ? (user.is_admin ? <td className='row'>
-                                    <button className="btn btn-warning" onClick={(e) => handleUpdate(e, bottle._id)}>Màj</button>
-                                    
-                                    <button className="btn btn-danger" onClick={(e) => handleDelete(e, bottle._id)}>Sup</button>
-                                </td> : null) : null}
+
 
                             </tr>
                             )

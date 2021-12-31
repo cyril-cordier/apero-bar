@@ -25,10 +25,8 @@ const Register = () => {
             setErrCode('');
             setMessage('Votre compte a bien été créé. Vous pouvez vous connecter.')
             history.push('/login')
-            console.log(JSON.stringify(result))
             
         } catch (err) {
-            console.log(JSON.stringify(err.message.substr(-3)))
             setErrCode(err.message.substr(-3))
             console.log("code", errCode)
             

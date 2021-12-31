@@ -22,7 +22,7 @@ export default function Home() {
     return (
         <div>
             {message ? <div className="alert alert-success">{message}</div> : null}
-            <h1>Apéro-Bar de Cyril</h1>
+            <h1>Apéro-Bar de Cyril & Christine</h1>
             {/* {user?<h2>Bienvenue {user.username}</h2> :null} */}
             
             <BottleList />
